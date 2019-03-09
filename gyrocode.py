@@ -31,7 +31,7 @@ for line in read:
 #y_var1=[14.375*i for i in y_var]
 #z_var1=[14.375*i for i in z_var]
 
-x_f=100
+x_f=100  #change frequency
 x_var_xaxis=np.arange(0,no_readings/x_f,1/x_f)
 #plt.plot(x_var[:20])
 x_readings=plt.figure(figsize=(40,10))
