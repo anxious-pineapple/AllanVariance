@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 
-no_readings=1000000
+no_readings=10000
 gap=1                       #gap b/w each plotted time
 start=0                     #starting value
 mu=0                        #mean for random variable
@@ -42,19 +42,19 @@ plt.ylabel('SIgnal')
 freqs1, psd1 = signal.welch(signal1)
 freqs2, psd2 = signal.welch(signal2)
 
-poly = np.polyfit(freqs1, psd1, -2)
-polynomial = np.poly1d(poly)
-y_int = polynomial(freqs1)
+
 
 fit=np.empty([len(freqs1),], dtype=float)
 for i in range(len(freqs1)):
     if freqs1[i]!=0:
-        fit[i]=freqs1[i]**(-2)+1
+        fit[i]=(freqs1[i])**(-2)
+    else:
+        fit[i]=0
 
 plt.subplot(1,3,2)
 plt.semilogx(freqs1, psd1,'r-')
 plt.semilogx(freqs2, psd2,'b-')
-plt.semilogx(freqs1, y_int,'go')
+plt.semilogx(freqs1, fit,'go')
 plt.title('PSD: power spectral density')
 plt.xlabel('Frequency')
 plt.ylabel('Power')
